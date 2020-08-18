@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Tongam's Online Project Test ver 1.1 </title>
+      <meta charset="utf-8" />
+      <link rel=stylesheet href="style.css">
+  </head>
+  <body>
+    <section>
+      <img src="images/wall.png" id=wall>
+      <img src="images/city.png" id=city>
+      <h2 class=t id="text"> 네가 사는 (buy) 집이 <br> 내가 사는 (live) 집이 <br> 되었어야 해! </h2>
+    </section>
+    <div id=article>
+      <div class=t id="t1">
+        <p>이런 식으로 간단한 스크롤 애니메이션을 구현할 수 있습니다. 통감의 재정 건전성을 위해 테스트는 계속됩니다. html+css3 실습. 이곳은 본문의 내용이 들어갈 자리입니다. 본문에는 다양한 내용이 들어갈 수 있습니다. 이 본문은 스크롤 애니메이션과 별개로 작동하며 문단의 구분이나 정렬 등이 자유 자제로 가능합니다.</p>
+        <p>글자는 이미지의 위나 아래로 지나갈 수 있으며, 화면이 멈춘 상태로 글자만 올라가거나 내려가게 하는 것도 가능합니다. 스크롤 애니메이션은 레퍼런스의 예시처럼 인터랙티브 기사와 자연스럽게 연동될 수 있습니다. </p>
+        <p>온라인 프로젝트를 진행할 때, 외주는 필수가 아닌 선택일 수 있습니다. 그러나 비전문가의 수준에서 어디까지 가능한 지는 저도 잘 모르겠습니다. 일단 이거 공부하는 데는 3시간 걸렸습니다. <strong>아래는 글자 수 테스트를 위한 주거백서 내용 복붙입니다.</strong> 그럼 안녕.</p>
+        <p>우선 집을 계약할 때는, 그 집에 융자가 있는지, 있다면 얼마나 있는지 등기부등본(등기사항증명서)을 통해서 꼭 확인해야 해! 만약 건물주가 이자나 세금을 내지 않아서 건물이 경매에 넘어가면 소중한 내 보증금을 잃을 수도 있거든. 특히 전세처럼 보증금이 높은 임대차 계약을 할 때는 더 신경 써야겠지?
+등기부등본은 건물의 소유자와 융자 등을 알려주는 문서로, 크게 표제부, 갑구, 을구 세 부분으로 되어 있어. 갑구에서는 우선 소유자와 집주인이 동일 인물인지를 확인하고, 을구에서는 융자가 있는지를 꼼꼼하게 확인하도록 하자!</p>
+        <p>선순위임차보증금은 말 그대로 나보다 앞선 순위로 계약한 사람들의 보증금 합계 총액을 의미해. 같은 건물에 나보다 먼저 계약한 사람들의 보증금이 이미 많이 쌓여있으면 건물이 경매에 넘어갔을 때 나중에 계약한 나는 보증금을 잃을 확률이 높아지게 되겠지? 그러니까 다가구주택의 경우 집주인에게 꼭! 선순위임차보증금을 확인시켜달라고 하고 꼼꼼하게 살펴보자~ 앞서 설명한 융자와 선순위임차보증금을 더한 값이 건물의 값에서 차지하는 비율이 높다면, 내 소중한 보증금의 안위가 위협받을 수 있으니 아무리 좋은 집이라도 다시 생각해보기! </p>
+        <p>집을 결정하고, 계약을 할 때 계약금, 또는 가계약금*을 보내야 할 수도 있어~ 이 때는 돈을 송금하는 계좌의 예금주가 집주인과 같은 사람인지 꼭 확인해야 해! 그렇지 않으면 사기에 당할 수도 있거든.</p>
+        <p>계약서를 작성했다고 끝이 아냐!
+그런 일은 없어야겠지만, 세입자들은 때때로 불리한 상황에 처할 수도 있거든. 이런 우리를 위해서 나라에서 ‘주택임대차보호법’을 제정했는데, 이 법에 의해 보호를 받기 위해서는 전입신고와 확정일자 받기 절차를 거쳐서 임차인의 대항력을 획득해야 해.
+전입신고와 확정일자는 동주민센터에 계약서를 지참하고 방문해서 받을 수 있고, 온라인으로는 전입신고를 받으려면 민원24(http://www.minwon.go.kr/)를, 확정일자를 받으려면 대한민국 법원 인터넷등기소를 방문하면 돼! 꼭 전입신고하고 확정일자 받아서 권리 찾자~</p>
+
+      </div>
+
+    </div>
+    <script>
+      let wall = document.getElementById("wall");
+      let city = document.getElementById("city");
+      let text = document.getElementById("text");
+      let t1 = document.getElementById("t1");
+      text.style.opacity=0;
+      wall.style.opacity=1;
+      city.style.opacity=0;
+
+
+      window.addEventListener('scroll', function(){
+        var value = window.scrollY;
+        var threshold = 3000;
+        if(value<threshold){
+          text.style.opacity= value * 0.001;
+          wall.style.top=value+'px';
+          text.style.top=value+'px';
+          t1.style.top=value+1000+'px';
+          city.style.top=value+1000+'px';
+          wall.style.opacity=1;
+          city.style.opacity=0;
+        } else {
+          wall.style.opacity=1-((value-threshold)*0.001);
+          text.style.opacity=1-((value-threshold)*0.001);
+          wall.style.top=value+'px';
+          text.style.top=value+'px';
+          city.style.opacity= (value-threshold)*0.001;
+          if (value<5000){
+            city.style.top=value+1000-(value-threshold)*0.5+'px';
+          } else {
+            city.style.top=value+'px';
+          }
+
+          //city.style.top=value+1000-(2000-value*0.5)+'px';
+
+        }
+      })
+    </script>
+  </body>
+</html>
